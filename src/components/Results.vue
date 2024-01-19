@@ -1,13 +1,16 @@
 <!-- Results.vue -->
 
 <template>
-  <h2>気象データ</h2>
-  <div>{{ results.country }}</div>
-  <div>{{ results.cityName }}</div>
-  <div>{{ results.temperature }}</div>
-  <div v-if="results.icon">
-    <img :src="results.icon" alt="icon" />
-    <span>{{ results.conditionText }}</span>
+  <div class="results-country" v-if="country">
+    {{ country }}
+  </div>
+  <div class="results-city" v-if="cityName">{{ cityName }}</div>
+  <div class="results-temp" v-if="temperature">
+    {{ temperature }}
+  </div>
+  <div class="results-condition" v-if="icon">
+    <img :src="icon" alt="icon" />
+    <span>{{ conditionText }}</span>
   </div>
 </template>
 
