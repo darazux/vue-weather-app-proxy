@@ -15,7 +15,12 @@
 </template>
 
 <script setup>
+import { toRefs } from 'vue';
 const props = defineProps({
   results: Object,
 });
+
+const { country, cityName, temperature, icon, conditionText } = toRefs(
+  props.results,
+);
 </script>
