@@ -5,7 +5,8 @@
     <div class="container">
       <Title />
       <Form @submit-form="getWeather" />
-      <Results :results="results" />
+      <Results :results="results" v-if="!loading" />
+      <Loading v-if="loading" />
     </div>
   </div>
 </template>
@@ -15,8 +16,11 @@ import axios from 'axios';
 import Title from './components/Title.vue';
 import Form from './components/Form.vue';
 import Results from './components/Results.vue';
-import { reactive } from 'vue';
+import Loading from './components/Loading.vue';
+import { reactive, ref } from 'vue';
 import './assets/base.css';
+
+const loading = ref(false);
 
 const results = reactive({
   country: '',
@@ -27,6 +31,7 @@ const results = reactive({
 });
 
 const getWeather = (city) => {
+  loading.value = true;
   axios
     .get(`https://proxy-server-node.vercel.app/weather-data?${city}`)
     .then((res) => {
@@ -35,6 +40,10 @@ const getWeather = (city) => {
         (results.temperature = res.data.current.temp_c),
         (results.conditionText = res.data.current.condition.text),
         (results.icon = res.data.current.condition.icon);
-    });
+      loading.value = false;
+    })
+    .catch((err) =>
+      alert('エラーが発生しました。ページをリロードしてください。'),
+    );
 };
 </script>
