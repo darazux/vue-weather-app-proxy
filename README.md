@@ -1,7 +1,7 @@
 # Weather App using Vue framework
 ## 概要
-[Weather API](https://www.weatherapi.com/) の天気データを取得し表示するWebアプリです。 
-api_key/api_secretを秘匿するため、中間にプロキシを経由させています。 
+[Weather API](https://www.weatherapi.com/) の天気データを取得し表示するWebアプリです。  
+api_key/api_secretを秘匿するため、中間にプロキシを経由させています。  
 Vue framework を使用しています。
 
 以下の書籍を参考に作成しました。
